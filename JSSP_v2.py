@@ -12,7 +12,7 @@ def sequence_constrain(jobs):
 
 def oneAtATime_constrain(jobs):
     for job_id, job in enumerate(jobs):
-        if (job[job_id][0]+job[job_id][1]<=job[job_id+1][0]):
+        if (job[job_id][0]<=job[job_id+1][0]):
             return True
         else:
             return False
@@ -24,17 +24,40 @@ def next_operation_order_default(jobs_data):
     jobs_order = random.sample(jobs_order, len(jobs_order))
     return jobs_order
 
-def next_operation_order_LPT(opeations):
-    pass
+def next_operation_order_LPT(jobs_data):
+    jobs_order = []
+    for job_id, job in enumerate(jobs_data):
+        jobs_order.append(random.sample(job, len(job)))
+    jobs_order = random.sample(jobs_order, len(jobs_order))
+    return jobs_order
 
-def next_operation_order_SPT(opeations):
-    pass
+def next_operation_order_SPT(jobs_data):
+    jobs_order = []
+    for job_id, job in enumerate(jobs_data):
+        jobs_order.append(random.sample(job, len(job)))
+    jobs_order = random.sample(jobs_order, len(jobs_order))
+    return jobs_order
 
-def next_operation_order_MPA(opeations):
-    pass
+def next_operation_order_MWRM(jobs_data):
+    jobs_order = []
+    for job_id, job in enumerate(jobs_data):
+        jobs_order.append(random.sample(job, len(job)))
+    jobs_order = random.sample(jobs_order, len(jobs_order))
+    return jobs_order
 
-def next_operation_order_LPA(opeations):
-    pass
+def next_operation_order_LWRM(jobs_data):
+    jobs_order = []
+    for job_id, job in enumerate(jobs_data):
+        jobs_order.append(random.sample(job, len(job)))
+    jobs_order = random.sample(jobs_order, len(jobs_order))
+    return jobs_order
+
+def next_operation_order_FIFO_MWRM(jobs_data):
+    jobs_order = []
+    for job_id, job in enumerate(jobs_data):
+        jobs_order.append(random.sample(job, len(job)))
+    jobs_order = random.sample(jobs_order, len(jobs_order))
+    return jobs_order
 
 def main():
     # #--------------------------Modifiable--------------------------#
