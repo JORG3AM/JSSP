@@ -9,14 +9,47 @@ Original file is located at
 
 # Libraries
 import random
-import numpy
+import numpy as np
+from pyhermes import Problem
+from readJS import *
+import random
 import matplotlib.pyplot
 
-# Individual initialization
-def createIndividual(n):
-  return numpy.random.randint(0, 2, n)
+    #--------------------------Modifiable--------------------------#
+    data = "tai15_15.txt"
+    shape = (15, 15)
+    n_instance = 0
+    #--------------------------------------------------------------#
+    info_df, all_times, all_machines = get_instances(data, shape)
 
-p = createIndividual(10)
+    machines = all_machines[n_instance]
+    times = all_times[n_instance]
+
+    real_optimal = info_df['Lower bound'][n_instance]
+
+    job = []
+    jobs_data = []
+    for id_m, machine in enumerate(machines):
+        for id_t, time in enumerate(times):
+            job.append((machine[id_t], time[id_t]))
+        jobs_data.append(job)
+
+# Individual initialization
+def createIndividual(all_times, all_machines, n_instance):
+    machines = all_machines[n_instance]
+    times = all_times[n_instance]
+
+    real_optimal = info_df['Lower bound'][n_instance]
+
+    job = []
+    jobs_data = []
+    for id_m, machine in enumerate(machines):
+        for id_t, time in enumerate(times):
+            job.append((machine[id_t], time[id_t]))
+        jobs_data.append(job)
+    return jobs_data
+
+p = createIndividual(1)
 print(p)
 
 # Crossover operator
